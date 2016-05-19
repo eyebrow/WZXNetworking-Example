@@ -15,6 +15,7 @@
 @property (nonatomic,copy)id parameters;
 @property (nonatomic,copy)NSDictionary * wHTTPHeader;
 @property (nonatomic,assign)ApiVersion version;
+@property (nonatomic,strong)WZXNetworkFormData * formData;
 @end
 @implementation WZXNetworkManager
 
@@ -76,6 +77,14 @@
     };
 }
 
+- (WZXNetworkManager *(^)(WZXNetworkFormData *))FormData {
+    return ^ WZXNetworkManager * (WZXNetworkFormData * formData){
+        self.formData = formData;
+        return self;
+    };
+}
+
+
 - (void)startRequestWithSuccess:(void (^)(id))success failure:(void (^)())failure {
     WZXNetworkManager * manager = [[self class]manager];
     //设置请求头
@@ -97,11 +106,22 @@
             break;
             
         case POST: {
-            [manager POST:url parameters:self.parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-                success(responseObject);
-            } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-                failure(error);
-            }];
+            if (self.formData) {
+                [manager POST:url parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                    [formData appendPartWithFileData:self.formData.data name:self.formData.name fileName:self.formData.fileName mimeType:self.formData.mimeType];
+                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                    success(responseObject);
+                } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+                    failure(error);
+                }];
+                
+            } else {
+                [manager POST:url parameters:self.parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                    success(responseObject);
+                } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+                    failure(error);
+                }];
+            }
         }
             break;
             
@@ -208,5 +228,6 @@
     self.wHTTPHeader = nil;
     self.requestSerialize = RequestSerializerHTTP;
     self.responseSerialize = ResponseSerializerJSON;
+    self.formData = nil;
 }
 @end

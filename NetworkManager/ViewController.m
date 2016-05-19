@@ -16,7 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[WZXNetworkManager manager].setRequest(@"http://192.168.1.40:8001").RequestType(POST).HTTPHeader(nil).Parameters(nil).RequestSerialize(RequestSerializerHTTP).ResponseSerialize(ResponseSerializerJSON) startRequestWithSuccess:^(id response) {
+    UIImage * image = [UIImage imageNamed:@"1.JPG"];
+    
+    WZXNetworkFormData * formData = [WZXNetworkFormData formDataWithImg:image
+    name:@"img" fileName:@"image" scale:1];
+    
+    [[WZXNetworkManager manager].setRequest(@"http://192.168.1.40:8001").RequestType(POST).HTTPHeader(nil).Parameters(nil).RequestSerialize(RequestSerializerHTTP).ResponseSerialize(ResponseSerializerJSON).FormData(formData) startRequestWithSuccess:^(id response) {
+        
+        NSLog(@"success");
+    } failure:^{
+        
+        NSLog(@"failure");
+    }];
+    
+    [[WZXNetworkManager manager].setRequest(@"http://192.168.1.40:8001") startRequestWithSuccess:^(id response) {
         
         NSLog(@"success");
     } failure:^{

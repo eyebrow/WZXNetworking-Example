@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
+#import "WZXNetworkFormData.h"
 @interface WZXNetworkManager : AFHTTPSessionManager
 typedef NS_ENUM(NSInteger,RequestType){
     GET,
@@ -61,9 +62,15 @@ typedef NS_ENUM(NSInteger,ApiVersion){
 - (WZXNetworkManager* (^)(RequestSerializer))RequestSerialize;
 
 /**
+ *  @method      formData
+ */
+- (WZXNetworkManager*(^)(WZXNetworkFormData * formData))FormData;
+
+/**
  *  @method      更改数据接收类型，默认JSON
  */
 - (WZXNetworkManager* (^)(ResponseSerializer))ResponseSerialize;
+
 - (WZXNetworkManager* (^)(ApiVersion))Version;
 
 /**

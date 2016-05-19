@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E3F31E11CEDBBE20028B3E5 /* WZXNetworkFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3F31E01CEDBBE20028B3E5 /* WZXNetworkFormData.m */; };
+		1E3F31E31CEDBE350028B3E5 /* 1.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1E3F31E21CEDBE350028B3E5 /* 1.JPG */; };
 		4BB5AFCA1CBF392300527B11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB5AFC91CBF392300527B11 /* main.m */; };
 		4BB5AFCD1CBF392300527B11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB5AFCC1CBF392300527B11 /* AppDelegate.m */; };
 		4BB5AFD01CBF392300527B11 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB5AFCF1CBF392300527B11 /* ViewController.m */; };
@@ -53,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E3F31DF1CEDBBE20028B3E5 /* WZXNetworkFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZXNetworkFormData.h; sourceTree = "<group>"; };
+		1E3F31E01CEDBBE20028B3E5 /* WZXNetworkFormData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZXNetworkFormData.m; sourceTree = "<group>"; };
+		1E3F31E21CEDBE350028B3E5 /* 1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.JPG; sourceTree = "<group>"; };
 		4BB5AFC51CBF392300527B11 /* NetworkManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BB5AFC91CBF392300527B11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BB5AFCB1CBF392300527B11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -158,6 +163,7 @@
 		4BB5AFC71CBF392300527B11 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				1E3F31E21CEDBE350028B3E5 /* 1.JPG */,
 				4BB5B0AC1CBF6BD000527B11 /* WZXNetwoking */,
 				4BB5AFCB1CBF392300527B11 /* AppDelegate.h */,
 				4BB5AFCC1CBF392300527B11 /* AppDelegate.m */,
@@ -204,6 +210,8 @@
 				4BB5B0AD1CBF6BD000527B11 /* AFN */,
 				4BB5B0D51CBF6BD000527B11 /* WZXNetworkManager.h */,
 				4BB5B0D61CBF6BD000527B11 /* WZXNetworkManager.m */,
+				1E3F31DF1CEDBBE20028B3E5 /* WZXNetworkFormData.h */,
+				1E3F31E01CEDBBE20028B3E5 /* WZXNetworkFormData.m */,
 			);
 			path = WZXNetwoking;
 			sourceTree = "<group>";
@@ -373,6 +381,7 @@
 			files = (
 				4BB5AFD81CBF392300527B11 /* LaunchScreen.storyboard in Resources */,
 				4BB5AFD51CBF392300527B11 /* Assets.xcassets in Resources */,
+				1E3F31E31CEDBE350028B3E5 /* 1.JPG in Resources */,
 				4BB5AFD31CBF392300527B11 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +419,7 @@
 				4BB5B0E61CBF6BD000527B11 /* UIRefreshControl+AFNetworking.m in Sources */,
 				4BB5B0E51CBF6BD000527B11 /* UIProgressView+AFNetworking.m in Sources */,
 				4BB5B0D71CBF6BD000527B11 /* AFHTTPRequestOperation.m in Sources */,
+				1E3F31E11CEDBBE20028B3E5 /* WZXNetworkFormData.m in Sources */,
 				4BB5B0E01CBF6BD000527B11 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				4BB5B0E71CBF6BD000527B11 /* UIWebView+AFNetworking.m in Sources */,
 				4BB5AFCD1CBF392300527B11 /* AppDelegate.m in Sources */,
