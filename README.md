@@ -70,3 +70,18 @@ apiGeGet.apiResponseSerializerType = ResponseSerializerTypeHTTP;
         NSLog(@"failure");
     }];
 ```
+
+## 更新
+- 16.05.19: 增加post加formdata的参数
+ ```objc
+    WZXNetworkFormData * formData = [WZXNetworkFormData formDataWithImg:image name:@"img" fileName:@"image" scale:1];
+    // or
+    // WZXNetworkFormData * formData = [WZXNetworkFormData formDataWithData:xxx name:name fileName:fileName mimeType:mimeType];
+
+    [[WZXNetworkManager manager].setRequest(@"http://192.168.1.40:8001").FormData(formData) startRequestWithSuccess:^(id response) {
+        NSLog(@"success");
+    } failure:^{
+        NSLog(@"failure");
+    }];
+
+ ```
