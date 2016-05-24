@@ -5,11 +5,11 @@
 这是一个容错性非常吓人的框架。
 它是采用链式编程思想封装。
 ```objc
- [[WZXNetworkManager manager].setRequest(@"http://192.168.1.40:8001").RequestType(POST).HTTPHeader(nil).Parameters(nil).RequestSerialize(RequestSerializerHTTP).ResponseSerialize(ResponseSerializerJSON) startRequestWithSuccess:^(id response) {
-        
+[[WZXNetworkManager manager].setRequest(@"http://192.168.1.40:8001").RequestType(POST).HTTPHeader(nil).Parameters(nil).RequestSerialize(RequestSerializerHTTP).ResponseSerialize(ResponseSerializerJSON).FormData(formData) startRequestWithProgress:^(NSProgress *progress) {
+        NSLog(@"%f",progress.fractionCompleted);
+    } success:^(id response) {
         NSLog(@"success");
     } failure:^{
-        
         NSLog(@"failure");
     }];
 ```
@@ -85,3 +85,6 @@ apiGeGet.apiResponseSerializerType = ResponseSerializerTypeHTTP;
     }];
 
  ```
+
+# 更新
+- 16.5.24 增加发送请求API，包含上传、下载进度的回调。
