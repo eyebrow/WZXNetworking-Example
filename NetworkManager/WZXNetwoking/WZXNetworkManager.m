@@ -84,24 +84,33 @@
     };
 }
 
-
-- (void)startRequestWithSuccess:(void (^)(id))success failure:(void (^)())failure {
+- (WZXNetworkManager *)setUpBeforeStart {
     WZXNetworkManager * manager = [[self class]manager];
     //设置请求头
     [self setupRequestSerializerWithManager:manager];
     [self setupHTTPHeaderWithManager:manager];
     //设置返回头
     [self setupResponseSerializerWithManager:manager];
-   
-    NSString * url = [self setupUrl];
+    return manager;
+}
+
+- (void)startRequestWithSuccess:(void (^)(id))success failure:(void (^)())failure {
+    [self startRequestWithProgress:nil success:success failure:failure];
+}
+
+- (void)startRequestWithProgress:(void (^)(NSProgress *))progress success:(void (^)(id))success failure:(void (^)())failure {
     
+    WZXNetworkManager * manager = [self setUpBeforeStart];
+    NSString * url = [self setupUrl];
     switch (self.wRequestType) {
         case GET: {
-        [manager GET:url parameters:self.parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            success(responseObject);
-        } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-            failure(error);
-        }];
+            [manager GET:url parameters:self.parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+                progress(downloadProgress);
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                success(responseObject);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                 failure(error);
+            }];
         }
             break;
             
@@ -109,16 +118,20 @@
             if (self.formData) {
                 [manager POST:url parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                     [formData appendPartWithFileData:self.formData.data name:self.formData.name fileName:self.formData.fileName mimeType:self.formData.mimeType];
-                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-                    success(responseObject);
-                } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-                    failure(error);
+                } progress:^(NSProgress * _Nonnull uploadProgress) {
+                     progress(uploadProgress);
+                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                     success(responseObject);
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                     failure(error);
                 }];
                 
             } else {
-                [manager POST:url parameters:self.parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                [manager POST:url parameters:self.parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+                    progress(uploadProgress);
+                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     success(responseObject);
-                } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     failure(error);
                 }];
             }

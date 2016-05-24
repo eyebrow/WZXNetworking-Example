@@ -71,10 +71,25 @@ typedef NS_ENUM(NSInteger,ApiVersion){
  */
 - (WZXNetworkManager* (^)(ResponseSerializer))ResponseSerialize;
 
+/**
+ *  版本
+ */
 - (WZXNetworkManager* (^)(ApiVersion))Version;
 
 /**
- *  @method      发送请求
+ *  发送请求(带进度)，仅限POST、GET
+ *
+ *  @param progress 下载或上传进度的回调
+ *  @param success  成功的回调
+ *  @param failure  失败的回调
  */
-- (void)startRequestWithSuccess:(void (^)(id response))success failure:(void (^)())failure;
+- (void)startRequestWithProgress:(void(^)(NSProgress * progress))progress success:(void(^)(id response))success failure:(void (^)())failure;
+
+/**
+ *  发送请求(不带进度)
+ *
+ *  @param success 成功的回调
+ *  @param failure 失败的回调
+ */
+- (void)startRequestWithSuccess:(void(^)(id response))success failure:(void (^)())failure;
 @end
