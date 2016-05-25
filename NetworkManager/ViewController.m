@@ -25,13 +25,13 @@
         NSLog(@"%f",progress.fractionCompleted);
     } success:^(id response) {
         NSLog(@"success");
-    } failure:^{
+    } failure:^(NSError * error){
         NSLog(@"failure");
     }];
     
     [[WZXNetworkManager manager].setRequest(@"http://192.168.1.40:8001") startRequestWithSuccess:^(id response) {
         NSLog(@"success");
-    } failure:^{
+    } failure:^(NSError * error){
         NSLog(@"failure");
     }];
 }

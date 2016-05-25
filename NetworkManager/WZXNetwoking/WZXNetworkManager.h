@@ -83,7 +83,7 @@ typedef NS_ENUM(NSInteger,ApiVersion){
  *  @param success  成功的回调
  *  @param failure  失败的回调
  */
-- (void)startRequestWithProgress:(void(^)(NSProgress * progress))progress success:(void(^)(id response))success failure:(void (^)())failure;
+- (void)startRequestWithProgress:(void(^)(NSProgress * progress))progress success:(void(^)(id response))success failure:(void (^)(NSError * error))failure;
 
 /**
  *  发送请求(不带进度)
@@ -91,5 +91,5 @@ typedef NS_ENUM(NSInteger,ApiVersion){
  *  @param success 成功的回调
  *  @param failure 失败的回调
  */
-- (void)startRequestWithSuccess:(void(^)(id response))success failure:(void (^)())failure;
+- (void)startRequestWithSuccess:(void(^)(id response))success failure:(void (^)(NSError * error))failure;
 @end

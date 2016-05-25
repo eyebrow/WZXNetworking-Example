@@ -94,11 +94,11 @@
     return manager;
 }
 
-- (void)startRequestWithSuccess:(void (^)(id))success failure:(void (^)())failure {
+- (void)startRequestWithSuccess:(void (^)(id))success failure:(void (^)(NSError * error))failure {
     [self startRequestWithProgress:nil success:success failure:failure];
 }
 
-- (void)startRequestWithProgress:(void (^)(NSProgress *))progress success:(void (^)(id))success failure:(void (^)())failure {
+- (void)startRequestWithProgress:(void (^)(NSProgress *))progress success:(void (^)(id))success failure:(void (^)(NSError * error))failure {
     
     WZXNetworkManager * manager = [self setUpBeforeStart];
     NSString * url = [self setupUrl];
