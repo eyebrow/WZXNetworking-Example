@@ -105,7 +105,6 @@
     switch (self.wRequestType) {
         case GET: {
             [manager GET:url parameters:self.parameters progress:^(NSProgress * _Nonnull downloadProgress) {
-                progress(downloadProgress);
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 success(responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -128,7 +127,6 @@
                 
             } else {
                 [manager POST:url parameters:self.parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-                    
                 } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     success(responseObject);
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
