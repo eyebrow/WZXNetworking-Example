@@ -99,4 +99,5 @@ apiGeGet.apiResponseSerializerType = ResponseSerializerTypeHTTP;
  */
 - (void)startRequestWithProgress:(void(^)(NSProgress * progress))progress success:(void(^)(id response))success failure:(void (^)())failure;
  ``` 
+- 16.5.29 修复get和post不能同时用的BUG
 
