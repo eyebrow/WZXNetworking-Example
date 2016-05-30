@@ -1,5 +1,5 @@
 # WZXNetworking
-基于AFNetwoking，使用链式编程思想的网络请求框架
+基于AFNetwoking，使用链式编程思想的网络请求框架的示例
 
 # 为什么封装WZXNetworking
 这是一个容错性非常吓人的框架。
